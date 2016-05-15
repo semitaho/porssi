@@ -1,4 +1,5 @@
-var path = require('path');
+var path = require('path'),
+  webpack = require('webpack');
 module.exports = {
   entry: './js/main.js',
   output: {
@@ -7,8 +8,15 @@ module.exports = {
   },
   module: {
     loaders: [
-      {test: /\.js$/,
-        exclude: /node_modules/, loader: "babel-loader"}
+      {
+        test: /\.js$/,
+        exclude: /node_modules/, loader: "babel-loader"
+      }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      'window.jQuery': 'jquery'
+    })
+  ],
 };

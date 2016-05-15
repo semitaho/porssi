@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="porssiapp">
 <head>
     <meta charset="UTF-8">
     <title>Pelaajapörssi</title>
-</head>
-<body>
-<script src="bundle.js" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
 
+</head>
+<body ng-controller="mainController as vm">
+<h1>terve vaan {{vm.paska}}</h1>
+<div input-field>
+    <input type="text" ng-model="vm.inputFieldInput" length="150">
+    <label>Input label</label>
+</div>
+<script src="bundle.js"></script>
 </body>
 </html>
