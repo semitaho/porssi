@@ -1,0 +1,20 @@
+{
+  "name": "pelaajaporssi",
+  "version": "1.0.0",
+  "description": "Etsi lisäresursseja treeneihin. Sovelluksen avulla voit selata eri profiileja, jotka voivat tuoda lisäkapasiteettia tiimiisi.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Toni Aho",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "angular": "^1.5.5"
+  }
+}
