@@ -1,13 +1,20 @@
 var path = require('path'),
-  webpack = require('webpack');
+  webpack = require('webpack'),
+  HtmlWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
   entry: './js/main.js',
   output: {
-    path: __dirname,
+    path: 'www',
     filename: 'bundle.js'
+
   },
   module: {
     loaders: [
+      {
+        test: /\.css$/,
+        loader: "style!css"
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/, loader: "babel-loader"
@@ -16,7 +23,14 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      'window.jQuery': 'jquery'
+      $: "jquery",
+      jQuery: "jquery",
+      'window.jQuery': "jquery"
+
+    }),
+    new HtmlWebpackPlugin({
+      filename: 'index.html',
+      template: './templates/index.html'
     })
-  ],
+  ]
 };

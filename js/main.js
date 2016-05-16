@@ -1,8 +1,11 @@
 import angular from 'angular';
-import angularMaterialize from 'angular-materialize';
+import 'angular-material/angular-material.css';
+import angularMaterial from 'angular-material';
 
-let app = angular.module('porssiapp', [angularMaterialize]);
+let app = angular.module('porssiapp', [angularMaterial]);
+
 
 app.controller('mainController', function () {
-  this.paska = 'kuu';
+  this.paska = 'paska';
 });
+console.log('kaaekkonen');
