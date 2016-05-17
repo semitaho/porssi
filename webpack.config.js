@@ -13,7 +13,7 @@ module.exports = {
     loaders: [
       {
         test: /\.css$/,
-        loader: "style!css"
+        loader: "style-loader!css-loader"
       },
       {
         test: /\.js$/,
@@ -22,12 +22,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      'window.jQuery': "jquery"
-
-    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './templates/index.html'
