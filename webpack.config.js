@@ -15,6 +15,8 @@ module.exports = {
         test: /\.css$/,
         loader: "style-loader!css-loader"
       },
+      {test: /\.html$/, loader: 'raw'},
+
       {
         test: /\.js$/,
         exclude: /node_modules/, loader: "babel-loader"
