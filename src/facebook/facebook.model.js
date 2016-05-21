@@ -8,7 +8,6 @@ class FacebookModel {
 
   init(data) {
     angular.copy(data, this.data);
-    console.log('this data', this.data);
     return this.data;
   }
 
@@ -24,6 +23,7 @@ class FacebookModel {
     };
     
     return this.facebookService.checkLoginStatus().then(successLogin, (error) => {
+      console.log('in login status success');
       return this.facebookService.login().then(successLogin);
     }).then(userData => {
       console.log('got use data', userData);

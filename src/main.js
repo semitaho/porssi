@@ -2,6 +2,7 @@ import angularMaterialize from 'angular-materialize';
 import routeConfig from './app.router.js';
 import NavigationComponent from './navigation/navigation.component.js';
 import HomeComponent from './home/home.component.js';
+import CardComponent from './home/card/card.component.js';
 import FooterComponent from './footer/footer.component.js';
 import FacebookModel from './facebook/facebook.model.js';
 
@@ -10,6 +11,7 @@ angular.module('porssiapp', ['ngRoute', angularMaterialize, require('angular-rou
   .config(routeConfig)
   .component('navigation', NavigationComponent)
   .component('home', HomeComponent)
+  .component('card', CardComponent)
   .component('porssiFooter', FooterComponent)
   .service('facebookService', FacebookService)
   .service('facebookModel', FacebookModel);

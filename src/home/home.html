@@ -1,5 +1,9 @@
 <div class="home">
     <h1>Pelaajapörssi</h1>
-    <p class="flow-text"><img src="{{$ctrl.userData.picture.data.url}}"></p>
+    <div class="row" ng-repeat="kortti in $ctrl.cards">
+        <div class="col l8 offset-l2">
+            <card item="kortti"></card>
+        </div>
+    </div>
     <footer />
 </div>

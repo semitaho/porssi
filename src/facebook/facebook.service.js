@@ -8,6 +8,7 @@ class FacebookService {
 
   checkLoginStatus() {
     let deferred = this.$q.defer();
+    console.log('quu');
     FB.getLoginStatus(response => {
       console.log('status', response);
       if ('connected' === response.status) {

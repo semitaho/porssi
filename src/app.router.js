@@ -4,7 +4,6 @@ const routeConfig = ($routeProvider) => {
     resolve: {
       userdata: function (facebookModel) {
         return facebookModel.resolveUserdata();
-
       }
     }
   });

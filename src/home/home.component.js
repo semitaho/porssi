@@ -7,9 +7,9 @@ const homeComponent = {
     userData: '<'
   },
   replace: true,
-  controller: function (facebookModel) {
-    console.log('model', facebookModel);
-    this.profilepic = facebookModel.data.picture.data.url;
+  controller: function () {
+    this.cards = [{imgsrc: this.userData.picture.data.url}];
+    console.log('cards', this.cards);
   }
 };
 
