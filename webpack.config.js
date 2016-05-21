@@ -3,7 +3,7 @@ var path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './js/main.js',
+  entry: './src/main.js',
   output: {
     path: 'www',
     filename: 'bundle.js'
@@ -20,7 +20,9 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/, loader: "babel-loader"
-      }
+      },
+      { test: /\.jpg$/, loader: "file-loader" }
+
     ]
   },
   plugins: [
