@@ -1,11 +1,13 @@
-<div class="card">
+<div class="card left-align">
     <div class="card-image">
-        <img src="{{$ctrl.item.imgsrc}}">
-        <span class="card-title">Card Title</span>
+        <img  class="facebook-profile-pic" ng-src="{{$ctrl.item.imgsrc}}" />
+        <span class="card-title", ng-bind="$ctrl.item.name"></span>
     </div>
     <div class="card-content">
-        <p>I am a very simple card. I am good at containing small bits of information.
+        <p><b>Lajit: </b><span ng-bind="$ctrl.item.lajit | lajitFilter" /></p>
+        <p><b>Esittely:</b> I am a very simple card. I am good at containing small bits of information.
             I am convenient because I require little markup to use effectively.</p>
+        <p><b>Tila: </b>Kysytty (2)</p>
     </div>
     <div class="card-action">
         <a href="#">This is a link</a>

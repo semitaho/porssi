@@ -22,7 +22,7 @@ class FacebookService {
 
   readUserInfo() {
     let deferred = this.$q.defer();
-    FB.api('/me', {fields: 'picture.width(400), name, birthday, email'}, response => {
+    FB.api('/me', {fields: 'picture.height(300), name, birthday, email'}, response => {
       if (!response || response.error) {
         deferred.reject('Error occured');
       } else {

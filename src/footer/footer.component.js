@@ -1,7 +1,8 @@
 import template from './footer.html';
 
 const footer = {
-  template
+  template,
+  replace: true
 };
 
 export default footer;
