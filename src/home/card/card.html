@@ -7,9 +7,9 @@
         <p><b>Lajit: </b><span ng-bind="$ctrl.item.lajit | lajitFilter" /></p>
         <p><b>Esittely:</b> I am a very simple card. I am good at containing small bits of information.
             I am convenient because I require little markup to use effectively.</p>
-        <p><b>Tila: </b>Kysytty (2)</p>
+        <p><b>Tila: </b>Kysytty ({{$ctrl.item.asked}})</p>
     </div>
     <div class="card-action">
-        <a href="javascript:void(0);" ng-click="$ctrl.sendMessage()">Kysy treeneihin</a>
+        <a href="javascript:void(0);" ng-click="$ctrl.sendMessage($ctrl.item.userid)">Kysy treeneihin</a>
     </div>
 </div>

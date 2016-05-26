@@ -1,8 +1,10 @@
 <div class="home">
     <h1>Pelaajapörssi</h1>
     <div class="row">
-        <div class="col l4" ng-repeat="kortti in $ctrl.cards">
-            <card item="kortti"></card>
+        <div class="col l4" ng-repeat="kortti in $ctrl.usermodel.users track by $index">
+
+            <card item="kortti" on-asked="$ctrl.usermodel.addAsked(kortti)" ></card>
+
         </div>
     </div>
     <footer />

@@ -1,9 +1,9 @@
 const routeConfig = ($routeProvider) => {
   $routeProvider.when('/', {
-    template: '<home user-data="$resolve.userdata"></home>',
+    template: '<home usermodel="$resolve.usermodel"></home>',
     resolve: {
-      userdata: function (facebookModel) {
-        return facebookModel.resolveUserdata();
+      usermodel: function (usersModel) {
+        return usersModel;
       }
     }
   });

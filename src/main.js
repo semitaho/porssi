@@ -6,7 +6,7 @@ import CardComponent from './home/card/card.component.js';
 import LajitFilter from './home/card/lajit.filter.js';
 import FooterComponent from './footer/footer.component.js';
 import FacebookModel from './facebook/facebook.model.js';
-
+import UsersModel from './users.model.js';
 import FacebookService from './facebook/facebook.service.js';
 angular.module('porssiapp', ['ngRoute', angularMaterialize, require('angular-route')])
   .config(routeConfig)
@@ -16,6 +16,8 @@ angular.module('porssiapp', ['ngRoute', angularMaterialize, require('angular-rou
   .component('porssiFooter', FooterComponent)
   .service('facebookService', FacebookService)
   .service('facebookModel', FacebookModel)
+  .service('usersModel', UsersModel)
+
   .filter('lajitFilter', LajitFilter);
 
 
