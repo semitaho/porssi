@@ -1,7 +1,7 @@
 import template from './home.html';
 import './home.css';
 
-var homeComponent = {
+const homeComponent = {
   template,
   bindings: {
     usermodel: '<'

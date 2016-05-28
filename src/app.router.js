@@ -6,6 +6,14 @@ const routeConfig = ($routeProvider) => {
         return usersModel;
       }
     }
+  }).when('/team', {
+    template: '<team model="$resolve.model" />',
+    resolve: {
+      model: function (teamModel) {
+        teamModel.resolveTeams('plaah');
+        return teamModel;
+      }
+    }
   });
 };
 export default routeConfig;
