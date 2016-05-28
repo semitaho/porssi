@@ -2,18 +2,26 @@
     <h1>Oma joukkue</h1>
     <div class="row">
         <div class="col s12">
-            <ul tabs>
-                <li class="tab col s4" ng-repeat="team in $ctrl.model.teams track by $index"><a ng-click="$ctrl.selectTab(team)", ng-bind="team.team" /></li>
+            <ul class="collapsible popout" data-collapsible="accordion" watch>
+                <li ng-repeat="team in $ctrl.model.teams">
+                    <div class="collapsible-header"><i class="{{single.icon}}"></i>{{team.team}}</div>
+                    <div class="collapsible-body">
+                        <ul class="">
+                            <li ng-repeat="player in team.players">
+                                <div class="row">
+                                    <div class="col s3" , ng-bind="player.name">
+                                    </div>
+                                    <div class="col s6">
+                                        <b ng-bind="player.pelipaikka"/>
+
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
-        <div id="test1" class="col s12" ng-if="$ctrl.tabSelected">
-            <ul>
-                <li ng-repeat="player in $ctrl.tabSelected.players", ng-bind="player.name" />
-
-            </ul>
-        </div>
-
     </div>
-    <ul class="left-align">
-    </ul>
 </div>
