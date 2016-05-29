@@ -5,8 +5,13 @@ class TeamModel {
   }
 
   resolveTeams(userid) {
-    this.teams.push({team: 'Puurtilan kisa-pojat', laji: 'Pesäpallo', players: [{name: 'Pasi', pelipaikka: 'Maalivahti'}]});
-    this.teams.push({team: 'Vuosaaren viikingit', laji: 'Jääkiekko', players: [{name: 'Teme'}]});
+    this.teams.push({
+      icon: 'mdi-maps-place',
+      team: 'Puurtilan kisa-pojat',
+      laji: 'Pesäpallo',
+      players: [{name: 'Pasi', pelipaikka: 'goalie'}]
+    });
+    this.teams.push({icon: 'mdi-maps-place', team: 'Vuosaaren viikingit', laji: 'Jääkiekko', players: [{name: 'Teme'}]});
     return this.teams;
 
   }

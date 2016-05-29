@@ -9,6 +9,8 @@ var Card = {
   },
   controller: function ($rootScope) {
     var self = this;
+    self.adding = false;
+
 
     this.sendMessage = (userid) => {
       FB.ui({
