@@ -37,7 +37,7 @@
                                     </button>
                                 </td>
                                 <td ng-if="player.editing">
-                                    <button class="btn btn-floating" ng-disabled="$ctrl.isEditDoneDisabled(player)" ng-click="$ctrl.editDone(player)">
+                                    <button class="btn btn-floating" ng-disabled="$ctrl.isEditDoneDisabled(player)" ng-click="$ctrl.editDone(team, player)">
                                         <i class="material-icons">done</i>
                                     </button>
                                     <button class="btn btn-floating" ng-click="$ctrl.editCancel(player)">

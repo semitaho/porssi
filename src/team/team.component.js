@@ -5,7 +5,12 @@ const teamComponent = {
   bindings: {
     model: '<'
   },
-  controller: function (koodisto) {
+  controller: function (koodisto, persistence) {
+
+    persistence.readAll('team').then(data => {
+      console.log('data', data);
+
+    });
     this.tabSelected = null;
     this.adding = false;
     this.koodisto = koodisto;
@@ -16,6 +21,7 @@ const teamComponent = {
 
     this.lisaa = function (team) {
       team.players.push(this.uusirivi);
+
       this.adding = false;
       this.uusirivi = null;
 
@@ -40,11 +46,17 @@ const teamComponent = {
 
     this.edit = function (player) {
       player.editing = true;
+
     };
 
-    this.editDone = function(player){
-      delete player.editing;
-    }
+    this.editDone = function (team, player) {
+      persistence.store(team, 'team').then(() => {
+        console.log('all done');
+        delete player.editing;
+
+
+      });
+    };
 
     this.isEditDoneDisabled = function (player) {
       if ($.isEmptyObject(player.name) || $.isEmptyObject(player.pelipaikka)) {

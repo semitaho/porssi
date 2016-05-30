@@ -7,7 +7,7 @@ import LajitFilter from './home/card/lajit.filter.js';
 import FacebookModel from './facebook/facebook.model.js';
 import UsersModel from './users.model.js';
 import FacebookService from './facebook/facebook.service.js';
-angular.module('porssiapp', ['ngRoute', commonModule, homeModule, teamModule, angularMaterialize, require('angular-route')])
+angular.module('porssiapp', ['ngRoute', require('angular-resource'), commonModule, homeModule, teamModule, angularMaterialize, require('angular-route')])
   .config(routeConfig)
   .service('facebookService', FacebookService)
   .service('facebookModel', FacebookModel)
