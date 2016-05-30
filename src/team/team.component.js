@@ -21,9 +21,13 @@ const teamComponent = {
 
     this.lisaa = function (team) {
       team.players.push(this.uusirivi);
+      persistence.store(team, 'team').then(() => {
+        console.log('all done');
+        this.adding = false;
+        this.uusirivi = null;
 
-      this.adding = false;
-      this.uusirivi = null;
+
+      });
 
     };
 
@@ -53,7 +57,6 @@ const teamComponent = {
       persistence.store(team, 'team').then(() => {
         console.log('all done');
         delete player.editing;
-
 
       });
     };

@@ -1,18 +1,18 @@
 class TeamModel {
 
-  constructor() {
+  constructor(persistence) {
     this.teams = [];
+    this.persistence = persistence;
   }
 
   resolveTeams(userid) {
-    this.teams.push({
-      icon: 'mdi-maps-place',
-      team: 'Puurtilan kisa-pojat',
-      laji: 'Pesäpallo',
-      players: [{name: 'Pasi', pelipaikka: 'goalie'}]
-    });
-    this.teams.push({icon: 'mdi-maps-place', team: 'Vuosaaren viikingit', laji: 'Jääkiekko', players: [{name: 'Teme'}]});
-    return this.teams;
+    return this.persistence.readAll('team', {})
+      .then(data=> {
+        console.log('result', data);
+        this.teams = data;
+        return this.teams;
+      });
+
 
   }
 
