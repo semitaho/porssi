@@ -7,10 +7,6 @@ const teamComponent = {
   },
   controller: function (koodisto, persistence) {
 
-    persistence.readAll('team').then(data => {
-      console.log('data', data);
-
-    });
     this.tabSelected = null;
     this.adding = false;
     this.koodisto = koodisto;
@@ -21,10 +17,10 @@ const teamComponent = {
 
     this.lisaa = function (team) {
       team.players.push(this.uusirivi);
+      this.uusirivi = null;
       persistence.store(team, 'team').then(() => {
         console.log('all done');
         this.adding = false;
-        this.uusirivi = null;
 
 
       });
@@ -48,17 +44,27 @@ const teamComponent = {
       this.adding = false;
     };
 
-    this.edit = function (player) {
-      player.editing = true;
+    this.edit = function (player, index) {
+      this.editing = angular.copy(player);
+      this.editing.$$index = index;
+      console.log('editing', this.editing);
+
+    };
+
+    this.isEditing = function (index) {
+      return this.editing && this.editing.$$index === index;
 
     };
 
     this.editDone = function (team, player) {
+      this.model.serialize(this.editing, player);
+      console.log('team', team);
+
       persistence.store(team, 'team').then(() => {
         console.log('all done');
-        delete player.editing;
-
+        delete this.editing;
       });
+
     };
 
     this.isEditDoneDisabled = function (player) {
@@ -67,8 +73,8 @@ const teamComponent = {
       }
       return false;
     };
-    this.editCancel = function (player) {
-      delete player.editing;
+    this.editCancel = function () {
+      this.editing = null;
     };
 
     this.selectTab = function (tab) {
@@ -79,6 +85,12 @@ const teamComponent = {
     this.$onInit = function () {
       this.tabSelected = this.model.teams[0];
     };
+    this.month = ['Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu',
+      'Lokakuu', 'Marraskuu', 'Joulukuu'];
+
+    this.monthShort = ['Tam', 'Hel', 'Maa', 'Huh', 'Tou', 'Kes', 'Hei', 'Elo', 'Syys', 'Loka', 'Mar', 'Jou'];
+    this.weekdaysLetter = ['S', 'M', 'T', 'K', 'T', 'P', 'L'];
+    this.weekdays = ['Sunnuntai', 'Maanantai', 'Tiistai', 'Keskiviikko', 'Torstai', 'Perjantai', 'Lauantai'];
 
 
   }

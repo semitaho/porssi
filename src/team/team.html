@@ -4,83 +4,120 @@
         <div class="col s12">
             <ul class="collapsible popout" data-collapsible="accordion" watch>
                 <li ng-repeat="team in $ctrl.model.teams">
-                    <div class="collapsible-header left-align"><b>{{team.team}}</b></div>
+                    <div class="collapsible-header row">
+                        <div class="col l4 left-align"><b>{{team.team}}</b></div>
+                        <div class="col l8"><span ng-bind="team.laji | koodistofilter:'lajit'"/></div>
+                    </div>
                     <div class="collapsible-body">
-                        <table class="team-table">
-                            <thead>
-                            <tr>
-                                <th/>
-                                <th>Nimi</th>
-                                <th>Pelipaikka</th>
-                                <th></th>
+                        <div class="row">
+                            <div class="col l2">
+                                <label for="treenitDate">Seuraavat treenit</label>
+                            </div>
+                            <div class="col l2">
+                                <input
+                                        input-date
+                                        type="text"
+                                        ng-model="team.event"
+                                        format="d.m.yyyy"
+                                        container="body"
+                                        months-full="{{ $ctrl.month }}"
+                                        months-short="{{$ctrl.monthShort }}"
+                                        weekdays-full="{{$ctrl.weekdays}}"
+                                        weekdays-letter="{{ $ctrl.weekdaysLetter }}"
 
-                            </tr>
+                                />
+                            </div>
+                            <div class="col l2">
+                                <input  type="text" placeholder="__:__">
 
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="player in team.players">
-                                <td></td>
-                                <td>
-                                    <span ng-if="!player.editing" ng-bind="player.name"/>
-                                    <input ng-if="player.editing" placeholder="Anna pelaajan nimi" type="text"
-                                           ng-model="player.name" length="150">
-                                </td>
-                                <td>
-                                    <span ng-if="!player.editing" ng-bind="player.pelipaikka | koodistofilter:'pelipaikat'"/>
-                                    <select ng-if="player.editing" class="browser-default" ng-model="player.pelipaikka"
-                                            ng-options="item.tunnus as item.label for item in  $ctrl.koodisto.pelipaikat">
-                                    </select>
+                            </div>
 
-                                </td>
-                                <td ng-if="!player.editing">
-                                    <button class="btn btn-floating" ng-click="$ctrl.edit(player)"><i class="material-icons">mode_edit</i>
-                                    </button>
-                                </td>
-                                <td ng-if="player.editing">
-                                    <button class="btn btn-floating" ng-disabled="$ctrl.isEditDoneDisabled(player)" ng-click="$ctrl.editDone(team, player)">
-                                        <i class="material-icons">done</i>
-                                    </button>
-                                    <button class="btn btn-floating" ng-click="$ctrl.editCancel(player)">
-                                        <i class="material-icons">clear</i>
-                                    </button>
+                        </div>
+                        <div class="row">
+                            <div class="col l2">
+                            <label>Pelaajat</label>
+                            </div>
+                            <div class="col s10">
+                                <table class="team-table">
+                                    <thead>
+                                    <tr>
+                                        <th/>
+                                        <th>Nimi</th>
+                                        <th>Pelipaikka</th>
+                                        <th></th>
 
+                                    </tr>
 
-                                </td>
-                            </tr>
-                            <tr ng-if="$ctrl.adding">
-                                <td/>
-                                <td class="input-field"><input placeholder="Anna pelaajan nimi" type="text"
-                                                               ng-model="$ctrl.uusirivi.name" length="150"></td>
-                                <td class="input-field">
-                                    <select class="browser-default" ng-model="$ctrl.uusirivi.pelipaikka"
-                                            ng-options="item.tunnus as item.label for item in  $ctrl.koodisto.pelipaikat track by item.tunnus">
-                                        <option selected value="">Valitse</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <button class="btn btn-floating" ng-disabled="$ctrl.isLisaaDisabled()" ng-click="$ctrl.lisaa(team)">
-                                        <i class="material-icons">done</i>
-                                    </button>
-                                    <button class="btn btn-floating" ng-click="$ctrl.cancel()">
-                                        <i class="material-icons">clear</i>
-                                    </button>
-                                </td>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="player in team.players">
+                                        <td></td>
+                                        <td>
+                                            <span ng-if="!$ctrl.isEditing($index)" ng-bind="player.name"/>
+                                            <input ng-if="$ctrl.isEditing($index)" placeholder="Anna pelaajan nimi" type="text"
+                                                   ng-model="$ctrl.editing.name" length="150">
+                                        </td>
+                                        <td>
+                                            <span ng-if="!$ctrl.isEditing($index)"
+                                                  ng-bind="player.pelipaikka | koodistofilter:'pelipaikat'"/>
+                                            <select ng-if="$ctrl.isEditing($index)" class="browser-default"
+                                                    ng-model="$ctrl.editing.pelipaikka"
+                                                    ng-options="item.tunnus as item.label for item in  $ctrl.koodisto.pelipaikat">
+                                            </select>
 
-                            </tr>
-                            <tr ng-if="!$ctrl.adding">
-                                <td>
-                                    <button class="btn" ng-click="$ctrl.addNew()"><i class="material-icons left">send</i> Lisää
-                                    </button>
+                                        </td>
+                                        <td ng-if="!$ctrl.isEditing($index)">
+                                            <button class="btn btn-floating" ng-click="$ctrl.edit(player, $index)"><i
+                                                    class="material-icons">mode_edit</i>
+                                            </button>
+                                        </td>
+                                        <td ng-if="$ctrl.isEditing($index)">
+                                            <button class="btn btn-floating" ng-disabled="$ctrl.isEditDoneDisabled(player)"
+                                                    ng-click="$ctrl.editDone(team, player)">
+                                                <i class="material-icons">done</i>
+                                            </button>
+                                            <button class="btn btn-floating" ng-click="$ctrl.editCancel()">
+                                                <i class="material-icons">clear</i>
+                                            </button>
 
 
-                                </td>
-                                <td colspan="3"/>
+                                        </td>
+                                    </tr>
+                                    <tr ng-if="$ctrl.adding">
+                                        <td/>
+                                        <td class="input-field"><input placeholder="Anna pelaajan nimi" type="text"
+                                                                       ng-model="$ctrl.uusirivi.name" length="150"></td>
+                                        <td class="input-field">
+                                            <select class="browser-default" ng-model="$ctrl.uusirivi.pelipaikka"
+                                                    ng-options="item.tunnus as item.label for item in  $ctrl.koodisto.pelipaikat track by item.tunnus">
+                                                <option selected value="">Valitse</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-floating" ng-disabled="$ctrl.isLisaaDisabled()"
+                                                    ng-click="$ctrl.lisaa(team)">
+                                                <i class="material-icons">done</i>
+                                            </button>
+                                            <button class="btn btn-floating" ng-click="$ctrl.cancel()">
+                                                <i class="material-icons">clear</i>
+                                            </button>
+                                        </td>
 
-                            </tr>
+                                    </tr>
+                                    <tr ng-if="!$ctrl.adding">
+                                        <td>
+                                            <button class="btn" ng-click="$ctrl.addNew()"><i class="material-icons left">send</i> Lisää
+                                            </button>
+                                        </td>
+                                        <td colspan="3"/>
 
-                            </tbody>
+                                    </tr>
 
-                        </table>
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
 
 
                 <li ng-if="$ctrl.adding">

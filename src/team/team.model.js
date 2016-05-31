@@ -12,8 +12,16 @@ class TeamModel {
         this.teams = data;
         return this.teams;
       });
+  }
 
-
+  serialize(uiplayer, dbplayer) {
+    angular.copy(uiplayer, dbplayer);
+    for (let key in dbplayer) {
+      if (key.indexOf('$$') > -1) {
+        delete dbplayer[key];
+      }
+    }
+    delete dbplayer.editing;
   }
 
 
