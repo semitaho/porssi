@@ -90,7 +90,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	angular.module('porssiapp', ['ngRoute', __webpack_require__(43), _commonModule2.default, _homeModule2.default, _teamModule2.default, _angularMaterialize2.default, __webpack_require__(45)]).config(_appRouter2.default).config(_spinnerInterceptor2.default).service('facebookService', _facebookService2.default).service('facebookModel', _facebookModel2.default).service('usersModel', _usersModel2.default).filter('lajitFilter', _lajitFilter2.default);
+	angular.module('porssiapp', ['ngRoute', __webpack_require__(43), _commonModule2.default, _homeModule2.default, _teamModule2.default, _angularMaterialize2.default, __webpack_require__(45)]).config(_appRouter2.default).config(_spinnerInterceptor2.default).service('facebookService', _facebookService2.default).service('facebookModel', _facebookModel2.default).service('usersModel', _usersModel2.default).filter('lajitFilter', _lajitFilter2.default).run(function () {
+	  console.log('app running');
+	});
 
 	window.fbAsyncInit = function () {
 	  FB.init({
@@ -33407,23 +33409,30 @@
 	  value: true
 	});
 	var routeConfig = function routeConfig($routeProvider) {
+
+	  var globalResolvers = {
+	    facebookmodel: function facebookmodel(facebookModel) {
+	      return facebookModel.resolveUserdata();
+	    }
+	  };
 	  $routeProvider.when('/', {
 	    template: '<home usermodel="$resolve.usermodel"></home>',
-	    resolve: {
+	    resolve: angular.extend(globalResolvers, {
 	      usermodel: function usermodel(usersModel) {
 	        return usersModel;
 	      }
-	    }
+	    })
 	  }).when('/team', {
 	    template: '<team model="$resolve.model" />',
-	    resolve: {
+	    resolve: angular.extend(globalResolvers, {
 	      model: function model(teamModel) {
 	        teamModel.resolveTeams('plaah');
 	        return teamModel;
 	      }
-	    }
+	    })
 	  });
 	};
+
 	exports.default = routeConfig;
 
 /***/ },
