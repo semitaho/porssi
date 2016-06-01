@@ -1,3 +1,5 @@
+
+import 'angular';
 import commonModule from './common.module.js';
 import homeModule from './home/home.module.js';
 import teamModule from './team/team.module.js';
@@ -8,13 +10,20 @@ import FacebookModel from './facebook/facebook.model.js';
 import UsersModel from './users.model.js';
 import FacebookService from './facebook/facebook.service.js';
 import spinnerProvider from './spinner.interceptor.js';
+
+
 angular.module('porssiapp', ['ngRoute', require('angular-resource'), commonModule, homeModule, teamModule, angularMaterialize, require('angular-route')])
   .config(routeConfig)
   .config(spinnerProvider) 
   .service('facebookService', FacebookService)
   .service('facebookModel', FacebookModel)
   .service('usersModel', UsersModel)
-  .filter('lajitFilter', LajitFilter);
+  .filter('lajitFilter', LajitFilter)
+  .run(() => {
+    console.log('app running');
+
+  });
+
 
 
 window.fbAsyncInit = () => {
