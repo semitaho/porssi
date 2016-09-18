@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/node_modules/node_modules.iml" filepath="$PROJECT_DIR$/node_modules/node_modules.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/porssi.iml" filepath="$PROJECT_DIR$/src/porssi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/server/server.iml" filepath="$PROJECT_DIR$/server/server.iml" />
       <module fileurl="file://$PROJECT_DIR$/templates/templates.iml" filepath="$PROJECT_DIR$/templates/templates.iml" />
     </modules>
   </component>

@@ -33,6 +33,7 @@
     "angular-route": "^1.5.5",
     "angular-sanitize": "^1.5.5",
     "jquery": "^2.2.3",
+    "materialize-clockpicker": "^1.0.1",
     "node-materialize": "^1.1.1"
   }
 }

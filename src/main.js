@@ -1,4 +1,3 @@
-
 import 'angular';
 import commonModule from './common.module.js';
 import homeModule from './home/home.module.js';
